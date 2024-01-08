@@ -6,10 +6,10 @@ import { redirect } from "next/navigation";
 import React, { useEffect } from "react";
 
 export default function DashboardIndex() {
-   const { data: session } = useSession();
-   const router = useRouter();
+  const { data: session } = useSession();
+  const router = useRouter();
 
-   return (
+  return (
     <div className="container max-w-md px-4 py-8 mx-auto">
       <h1 className="text-3xl font-bold text-gray-800">Dashboard</h1>
 
@@ -24,24 +24,21 @@ export default function DashboardIndex() {
   );
 }
 
-
 export async function getServerSideProps(context: any) {
+  const userSession = await getSession(context);
 
- const sss = await getSession(context);
- console.log("xx");
- console.log("xx");
- console.log("xx");
- console.log("xx");
-
- console.log(sss?.user);
-
-  return {
-    redirect: {
-      permanent: false,
-      destination: "/auth/signin",
-    },
-    props: {
-      session: await getSession(context),
-    },
-  };
+  if (userSession?.user?.email) {
+    return {
+      props: {
+        session: await getSession(context),
+      },
+    };
+  } else {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/auth/signin",
+      },
+    };
+  }
 }

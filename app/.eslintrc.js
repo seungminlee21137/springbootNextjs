@@ -16,7 +16,7 @@ module.exports = {
       version: "detect",
     },
   },
-  extends: ["plugin:react/recommended", "prettier"],
+  extends: ["next/core-web-vitals", "plugin:react/recommended", "prettier"],
   plugins: ["react", "prettier"],
   /*
    * lint 오류많은 부분 우선 off

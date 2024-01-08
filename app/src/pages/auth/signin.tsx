@@ -34,7 +34,7 @@ export default function SignIn() {
         console.log("error: ", res.error);
         toast.error(res.error);
       } else {
-        // toast.success("Signed in successfully");
+        toast.success("Signed in successfully");
         router.push("/dashboard");
       }
     } catch (error) {

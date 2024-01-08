@@ -49,8 +49,9 @@ export default function SignUp() {
 
       const { user } = await res.json();
 
-      if (!res.ok) throw Error(user);
-
+      if (!res.ok) {
+        throw Error(user);
+      }
       // start session after signup
       await signIn("credentials", {
         username,
